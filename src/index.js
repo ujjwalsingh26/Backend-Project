@@ -49,6 +49,8 @@
 
 import connectDB from "./db/db.js";
 
+
+
 //importing dotenv file->makes all the env variables available as soon as possible
 // require('dotenv').config({path:'./env'}) -> first way 
 
@@ -59,4 +61,15 @@ dotenv.config({
 });
 
 
+//we should use then and catch for better coding
 connectDB()
+.then(()=>{
+  app.listen(process.env.PORT || 8000 ,()=>{
+    console.log(`Server is running at : ${process.env.PORT}`);
+    
+  })
+})
+.catch((error)=>{
+  console.log("MobgoDb connection failed",error);
+  
+})
